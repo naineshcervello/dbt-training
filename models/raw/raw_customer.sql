@@ -1,7 +1,8 @@
 {{
     config(
-        materialized='view'
+        materialized='table'
     )
 }}
 select * from 
-RAW.GLOBALMART.CUSTOMER
+--raw.globalmart.customer
+{{ source('globalmart', 'customer') }}
