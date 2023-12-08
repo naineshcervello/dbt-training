@@ -1,24 +1,26 @@
 select
---from raw_order
-o.orderid,
-o.orderdate,
-o.shipdate,
-o.shipmode,
-o.ordersellingprice - o.ordercostprice as orderprofit,
-o.ordersellingprice,
-o.ordercostprice,
+--from raw_orders
+orderid,
+orderdate,
+shipdate,
+shipmode,
+o.customerid,
+o.productid,
+ordersellingprice,
+ordercostprice,
 --from raw_customer
-c.customerid,   
-c.customername,
-c.segment,
-c.country,
+customername,
+segment,
+country,
 --from raw_product
-p.productid,
-p.category,
-p.productname,
-p.subcategory
+category,
+productname,
+subcategory,
+ordersellingprice - ordercostprice as orderprofit,
+{{ markup('ordersellingprice', 'ordercostprice' ) }} as markup
 from {{ ref('raw_orders') }} as o
 left join {{ ref('raw_customer') }} as c
 on o.customerid = c.customerid
 left join {{ ref('raw_product') }} as p
 on o.productid = p.productid
+{{limit_data_in_dev('orderdate')}}
