@@ -1,4 +1,4 @@
-{{ config(materialized='table', alias='first_model', tags=["nightly", "example"] ) }}
+{{ config(materialized='view', alias='first_model', tags=["nightly", "example"] ) }}
 
 with source_data as (
 
