@@ -1,4 +1,4 @@
-{{ config(materialized='view', alias='first_model', tags=["nightly", "example"] ) }}
+{{ config(materialized='ephemeral', alias='first_model', tags=["nightly", "example"] ) }}
 
 with source_data as (
 
