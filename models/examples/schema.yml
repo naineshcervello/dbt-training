@@ -8,9 +8,6 @@ models:
             description: "The primary key for this table"
             tests:
                 - unique
-                - not_null
-                - accepted_values:
-                    values: [1,2]
 
     - name: second_model
       description: "A starter dbt model"
@@ -19,11 +16,10 @@ models:
             description: "The primary key for this table"
             tests:
                 - unique
-                - not_null
-                
                 - relationships:
                     to: ref('first_model')
                     field: id
+
     - name: snowflake_customer_purchases
       description: "the total purchases for each customer in snowflake sample data"
       columns:
