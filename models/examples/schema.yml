@@ -8,7 +8,8 @@ models:
             description: "The primary key for this table"
             tests:
                 - unique
-
+                - not_null
+              
     - name: second_model
       description: "A starter dbt model"
       columns:
@@ -16,6 +17,8 @@ models:
             description: "The primary key for this table"
             tests:
                 - unique
+                - not_null
+                
                 - relationships:
                     to: ref('first_model')
                     field: id
